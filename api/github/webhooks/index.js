@@ -33169,6 +33169,8 @@ var require_dist_node7 = __commonJS({
     }
     var import_aggregate_error3 = __toESM2(require_aggregate_error());
     function getPayload(request) {
+      console.log(request.body)
+      console.log(typeof request.body)
       if ("body" in request) {
         if (typeof request.body === "object" && "rawBody" in request && request.rawBody instanceof Buffer) {
           return Promise.resolve(request.rawBody.toString("utf8"));
