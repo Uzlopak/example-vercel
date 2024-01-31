@@ -33147,7 +33147,7 @@ var require_dist_node7 = __commonJS({
       }
       let payload;
       try {
-        payload = JSON.parse(event.payload);
+        payload = event.payload;
       } catch (error) {
         error.message = "Invalid JSON";
         error.status = 400;
