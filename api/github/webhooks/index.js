@@ -33129,17 +33129,12 @@ var require_dist_node7 = __commonJS({
     async function verifyAndReceive(state, event) {
       const matchesSignature = await (0, import_webhooks_methods.verify)(
         state.secret,
-        JSON.stringify(event.payload),
+        event.payload,
         event.signature
       ).catch(() => false);
       if (!matchesSignature) {
         const error = new Error(
-          `[@octokit/webhooks] signature does not match event payload and secret
-          secret: ${state.secret}
-          signature: ${event.signature}
-          payload: ${event.payload}
-          typeof payload: ${typeof event.payload}
-          `
+          "[@octokit/webhooks] signature does not match event payload and secret"
         );
         return state.eventHandler.receive(
           Object.assign(error, { event, status: 400 })
@@ -33147,7 +33142,7 @@ var require_dist_node7 = __commonJS({
       }
       let payload;
       try {
-        payload = event.payload;
+        payload = JSON.parse(event.payload);
       } catch (error) {
         error.message = "Invalid JSON";
         error.status = 400;
